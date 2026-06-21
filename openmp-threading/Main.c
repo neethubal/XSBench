@@ -1,5 +1,9 @@
 #include "XSbench_header.h"
 
+#ifdef ENABLE_ZSIM_HOOKS
+#include "zsim_hooks.h"
+#endif
+
 #ifdef MPI
 #include<mpi.h>
 #endif
@@ -76,6 +80,10 @@ int main( int argc, char* argv[] )
 	// Start Simulation Timer
 	omp_start = get_time();
 
+#ifdef ENABLE_ZSIM_HOOKS
+	zsim_roi_begin();
+#endif
+
 	// Run simulation
 	if( in.simulation_method == EVENT_BASED )
 	{
@@ -91,6 +99,10 @@ int main( int argc, char* argv[] )
 	}
 	else
 		verification = run_history_based_simulation(in, SD, mype);
+
+#ifdef ENABLE_ZSIM_HOOKS
+	zsim_roi_end();
+#endif
 
 	if( mype == 0)	
 	{	
