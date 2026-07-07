@@ -40,6 +40,7 @@ endif
 
 # Standard Flags
 CFLAGS := -std=gnu99 -Wall
+CFLAGS += -DENABLE_ZSIM_HOOKS   # [SIGMA] compile in the zsim ROI markers
 
 # Linker Flags
 LDFLAGS = -lm

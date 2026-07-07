@@ -1,2 +1,6 @@
 *.o
 */XSBench
+
+# Pin tool output
+pin.log
+pintool.log
